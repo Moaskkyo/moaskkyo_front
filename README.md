@@ -1,32 +1,20 @@
-# React + TypeScript + Vite
+# 모앗꾜 (Moaskkyo)
+모앗꾜는 학교생활에 필요한 정보를 한번에 확인할 수 있는 웹 서비스입니다.
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## 아키텍처
+프론트엔드 코드는 기능이 많고 앞으로도 확장될 프로젝트 특성을 고려해
+FSD(Feature-Sliced Design) 아키텍처를 기준으로 구성합니다.
+FSD를 통해 기능별 코드의 책임을 구분하고, 계층 간 의존성 규칙을 명확히
+하여 유지보수성과 협업 효율을 높이는 것을 목표로 합니다.
 
-Currently, two official plugins are available:
+폴더 구조 예시
+src/
+├── app/        # 앱 초기화, 전역 설정 및 라우팅
+├── pages/      # 페이지 단위 구성
+├── widgets/    # 여러 요소를 조합한 독립적인 화면 영역
+├── features/   # 사용자의 행동과 주요 기능
+├── entities/   # 사용자, 학교, 급식 등 도메인 개념
+└── shared/     # 여러 기능에서 재사용하는 범용 UI 및 유틸리티
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+위 구조는 계층의 역할을 설명하기 위한 예시입니다. 실제 폴더와 파일은
+구현 상황에 맞게 구성합니다. 
