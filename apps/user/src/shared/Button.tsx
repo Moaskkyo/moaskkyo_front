@@ -3,10 +3,15 @@ import styled from "@emotion/styled";
 interface ButtonProps {
   text: string;
   width?: string;
+  onClick: () => void;
 }
 
-export default function Button({ text, width = "auto" }: ButtonProps) {
-  return <Wrapper $width={width}>{text}</Wrapper>;
+export default function Button({ text, width = "auto", onClick }: ButtonProps) {
+  return (
+    <Wrapper $width={width} onClick={onClick}>
+      {text}
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div<{ $width: string }>`
