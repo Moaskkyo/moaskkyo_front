@@ -16,7 +16,7 @@
 Feature-Sliced Design을 적용합니다.
 
 - `app`: 앱 초기화 및 전역 설정
-- `pages`: 페이지 구성
+    - `pages`: 페이지 구성
 - `widgets`: 독립적인 화면 영역
 - `features`: 사용자 행동 및 기능
 - `entities`: 도메인 데이터와 UI

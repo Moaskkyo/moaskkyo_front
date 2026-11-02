@@ -18,11 +18,19 @@
 ### 계층별 역할
 
 - `app`: 앱 초기화, 라우팅, 전역 설정
-- `pages`: 페이지 구성
+    - `pages`: 페이지 구성
 - `widgets`: 여러 요소를 조합한 독립적인 화면 영역
 - `features`: 로그인, 피드백 제출 등 사용자 기능
+    - `(featuresName)`
+        - `model`: type, mockItems
+        - `ui`: entityName 관련 ui
 - `entities`: 사용자, 학교, 선생님, 급식 등 도메인 개념
+    - `(entitiyName)`
+        - `model`: type, mockItems
+        - `ui`: entityName 관련 ui
 - `shared`: 도메인에 종속되지 않는 공통 UI 및 유틸리티
+    - `ui`: 공통 ui ex) button[사이즈 props로 받음], toggle
+ 
 
 ### 의존성 규칙
 
