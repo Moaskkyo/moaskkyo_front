@@ -5,20 +5,20 @@ import {
   mockAssessmentSchedules,
   mockBirthdaySchedules,
   type Schedule,
-} from "../../../../entities/schedule";
+} from "../../../entities/schedule";
 import {
   ScheduleCategoryToggles,
   useScheduleCategoryFilter,
-} from "../../../../features/filter-schedule-category";
+} from "../../../features/filter-schedule-category";
 import {
   CalendarMonthNavigator,
   useCalendarMonth,
-} from "../../../../features/navigate-calendar-month";
-import { formatMonthTitle, isSameMonth, startOfDay } from "../../../../shared/lib/date";
-import { colors } from "../../../../shared/styles/colors";
-import { CalendarMonth } from "../../../../widgets/calendar-month";
-import { ScheduleDayDetail } from "../../../../widgets/schedule-day-detail";
-import SideBar from "../../../../widgets/SideBar";
+} from "../../../features/navigate-calendar-month";
+import { formatMonthTitle, isSameMonth, startOfDay } from "../../../shared/lib/date";
+import { colors } from "../../../shared/styles/colors";
+import { CalendarMonth } from "../../../widgets/calendar-month";
+import { ScheduleDayDetail } from "../../../widgets/schedule-day-detail";
+import Layout from "../../Layout";
 
 export default function CalendarPage() {
   const [today] = useState(() => startOfDay(new Date()));
@@ -44,8 +44,7 @@ export default function CalendarPage() {
 
   return (
     <Layout>
-      <SideBar />
-      <Main>
+      <Page>
         <Header>
           <HeaderLeft>
             <MonthTitle>{formatMonthTitle(viewMonth)}</MonthTitle>
@@ -71,24 +70,16 @@ export default function CalendarPage() {
           />
           <ScheduleDayDetail date={selectedDate} schedules={visibleSchedules} />
         </Body>
-      </Main>
+      </Page>
     </Layout>
   );
 }
 
-const Layout = styled.div`
-  display: flex;
-  height: 100vh;
-  background-color: ${colors.background};
-`;
-
-const Main = styled.main`
+/** 공통 Layout의 Main 안에서 본문(Body)이 남은 높이를 채우도록 세로 flex로 감싼다. */
+const Page = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-width: 0;
-  padding: 24px 32px;
-  overflow: auto;
+  min-height: 100%;
 `;
 
 const Header = styled.header`
