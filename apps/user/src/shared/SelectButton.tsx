@@ -35,4 +35,5 @@ const Wrapper = styled.div<{ $width: string; $selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
