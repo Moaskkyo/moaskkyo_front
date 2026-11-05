@@ -1,8 +1,8 @@
-import { CalendarPage } from "./app/pages/calendar";
+import { MealPage } from "./app/pages/meal";
 
-// 라우팅 도입 전 임시로 캘린더 페이지를 직접 렌더한다.
+// 라우팅 도입 전 임시로 급식 페이지를 직접 렌더한다.
 function App() {
-  return <CalendarPage />;
+  return <MealPage />;
 }
 
 export default App;
