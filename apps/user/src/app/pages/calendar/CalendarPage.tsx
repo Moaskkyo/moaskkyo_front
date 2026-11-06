@@ -18,7 +18,6 @@ import { formatMonthTitle, isSameMonth, startOfDay } from "../../../shared/lib/d
 import { colors } from "../../../shared/styles/colors";
 import { CalendarMonth } from "../../../widgets/calendar-month";
 import { ScheduleDayDetail } from "../../../widgets/schedule-day-detail";
-import Layout from "../../Layout";
 
 export default function CalendarPage() {
   const [today] = useState(() => startOfDay(new Date()));
@@ -43,35 +42,33 @@ export default function CalendarPage() {
   }, [goToMonthOf, today]);
 
   return (
-    <Layout>
-      <Page>
-        <Header>
-          <HeaderLeft>
-            <MonthTitle>{formatMonthTitle(viewMonth)}</MonthTitle>
-            <CalendarMonthNavigator
-              isTodayMonth={isSameMonth(viewMonth, today)}
-              onPrevious={goToPreviousMonth}
-              onNext={goToNextMonth}
-              onToday={goToToday}
-            />
-          </HeaderLeft>
-          <ScheduleCategoryToggles
-            visibleCategories={visibleCategories}
-            onToggle={toggleCategory}
+    <Page>
+      <Header>
+        <HeaderLeft>
+          <MonthTitle>{formatMonthTitle(viewMonth)}</MonthTitle>
+          <CalendarMonthNavigator
+            isTodayMonth={isSameMonth(viewMonth, today)}
+            onPrevious={goToPreviousMonth}
+            onNext={goToNextMonth}
+            onToday={goToToday}
           />
-        </Header>
-        <Body>
-          <CalendarMonth
-            monthDate={viewMonth}
-            today={today}
-            selectedDate={selectedDate}
-            schedules={visibleSchedules}
-            onSelectDate={setSelectedDate}
-          />
-          <ScheduleDayDetail date={selectedDate} schedules={visibleSchedules} />
-        </Body>
-      </Page>
-    </Layout>
+        </HeaderLeft>
+        <ScheduleCategoryToggles
+          visibleCategories={visibleCategories}
+          onToggle={toggleCategory}
+        />
+      </Header>
+      <Body>
+        <CalendarMonth
+          monthDate={viewMonth}
+          today={today}
+          selectedDate={selectedDate}
+          schedules={visibleSchedules}
+          onSelectDate={setSelectedDate}
+        />
+        <ScheduleDayDetail date={selectedDate} schedules={visibleSchedules} />
+      </Body>
+    </Page>
   );
 }
 
