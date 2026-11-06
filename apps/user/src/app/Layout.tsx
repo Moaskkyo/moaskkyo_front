@@ -1,16 +1,14 @@
 import styled from "@emotion/styled";
-import type { ReactNode } from "react";
-import SideBar from "../widgets/SideBar";
+import { Outlet } from "react-router-dom";
+import SideBar from "@/widgets/SideBar";
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout() {
   return (
     <Wrapper>
       <SideBar />
-      <Main>{children}</Main>
+      <Main>
+        <Outlet />
+      </Main>
     </Wrapper>
   );
 }

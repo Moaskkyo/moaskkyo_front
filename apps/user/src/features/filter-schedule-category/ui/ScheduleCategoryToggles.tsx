@@ -3,10 +3,10 @@ import {
   SCHEDULE_CATEGORIES,
   SCHEDULE_CATEGORY_CONFIG,
   type ScheduleCategory,
-} from "../../../entities/schedule";
-import Toggle from "../../../shared/Toggle";
-import { colors } from "../../../shared/styles/colors";
-import type { VisibleCategories } from "../model/useScheduleCategoryFilter";
+} from "@/entities/schedule";
+import Toggle from "@/shared/Toggle";
+import { colors } from "@/shared/styles/colors";
+import type { VisibleCategories } from "@/features/filter-schedule-category/model/useScheduleCategoryFilter";
 
 interface ScheduleCategoryTogglesProps {
   visibleCategories: VisibleCategories;

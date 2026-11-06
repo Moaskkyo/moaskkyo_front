@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { useMemo } from "react";
-import type { Schedule } from "../../../entities/schedule";
-import { getMonthWeeks, WEEKDAY_LABELS } from "../../../shared/lib/date";
-import { colors } from "../../../shared/styles/colors";
-import CalendarWeekRow from "./CalendarWeekRow";
+import type { Schedule } from "@/entities/schedule";
+import { getMonthWeeks, WEEKDAY_LABELS } from "@/shared/lib/date";
+import { colors } from "@/shared/styles/colors";
+import CalendarWeekRow from "@/widgets/calendar-month/ui/CalendarWeekRow";
 
 interface CalendarMonthProps {
   /** 보여줄 월. 어느 날짜든 그 달의 그리드를 그린다. */

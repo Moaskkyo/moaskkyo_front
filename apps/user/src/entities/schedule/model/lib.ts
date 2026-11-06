@@ -1,5 +1,5 @@
-import { toDateKey } from "../../../shared/lib/date";
-import type { Schedule } from "./types";
+import { toDateKey } from "@/shared/lib/date";
+import type { Schedule } from "@/entities/schedule/model/types";
 
 /** 생일 칩은 이름 3자까지만 보이고 나머지(이름 뒷부분, 학번)는 생략한다. (명세: 김김김…) */
 const BIRTHDAY_NAME_VISIBLE_LENGTH = 3;

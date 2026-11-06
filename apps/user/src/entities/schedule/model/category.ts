@@ -1,4 +1,4 @@
-import type { ScheduleCategory } from "./types";
+import type { ScheduleCategory } from "@/entities/schedule/model/types";
 
 export interface ScheduleCategoryConfig {
   label: string;

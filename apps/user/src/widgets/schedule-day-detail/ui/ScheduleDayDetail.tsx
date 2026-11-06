@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { useMemo } from "react";
-import { getSchedulesOnDate, ScheduleCard, type Schedule } from "../../../entities/schedule";
-import { formatDayTitle } from "../../../shared/lib/date";
-import { colors } from "../../../shared/styles/colors";
+import { getSchedulesOnDate, ScheduleCard, type Schedule } from "@/entities/schedule";
+import { formatDayTitle } from "@/shared/lib/date";
+import { colors } from "@/shared/styles/colors";
 
 interface ScheduleDayDetailProps {
   date: Date;

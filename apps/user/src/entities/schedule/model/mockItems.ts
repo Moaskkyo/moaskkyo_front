@@ -1,5 +1,5 @@
-import { startOfMonth, toDateKey } from "../../../shared/lib/date";
-import type { AcademicSchedule, AssessmentSchedule, BirthdaySchedule } from "./types";
+import { startOfMonth, toDateKey } from "@/shared/lib/date";
+import type { AcademicSchedule, AssessmentSchedule, BirthdaySchedule } from "@/entities/schedule/model/types";
 
 /**
  * 퍼블리싱 확인용 mock. 명세의 하위 조회 3종(학사일정 / 수행평가 / 생일)이
