@@ -5,19 +5,19 @@ import {
   mockAssessmentSchedules,
   mockBirthdaySchedules,
   type Schedule,
-} from "../../../entities/schedule";
+} from "@/entities/schedule";
 import {
   ScheduleCategoryToggles,
   useScheduleCategoryFilter,
-} from "../../../features/filter-schedule-category";
+} from "@/features/filter-schedule-category";
 import {
   CalendarMonthNavigator,
   useCalendarMonth,
-} from "../../../features/navigate-calendar-month";
-import { formatMonthTitle, isSameMonth, startOfDay } from "../../../shared/lib/date";
-import { colors } from "../../../shared/styles/colors";
-import { CalendarMonth } from "../../../widgets/calendar-month";
-import { ScheduleDayDetail } from "../../../widgets/schedule-day-detail";
+} from "@/features/navigate-calendar-month";
+import { formatMonthTitle, isSameMonth, startOfDay } from "@/shared/lib/date";
+import { colors } from "@/shared/styles/colors";
+import { CalendarMonth } from "@/widgets/calendar-month";
+import { ScheduleDayDetail } from "@/widgets/schedule-day-detail";
 
 export default function CalendarPage() {
   const [today] = useState(() => startOfDay(new Date()));

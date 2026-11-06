@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
-import { SCHEDULE_CATEGORY_CONFIG } from "../model/category";
-import { getScheduleChipLabel, getScheduleTitle } from "../model/lib";
-import type { Schedule } from "../model/types";
+import { SCHEDULE_CATEGORY_CONFIG } from "@/entities/schedule/model/category";
+import {
+  getScheduleChipLabel,
+  getScheduleTitle,
+} from "@/entities/schedule/model/lib";
+import type { Schedule } from "@/entities/schedule/model/types";
 
 interface ScheduleChipProps {
   schedule: Schedule;

@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { useMemo } from "react";
-import { ScheduleChip, type Schedule } from "../../../entities/schedule";
-import { isSameDay, isSameMonth } from "../../../shared/lib/date";
-import { buildWeekSegments } from "../model/buildWeekSegments";
-import CalendarDayCell from "./CalendarDayCell";
+import { ScheduleChip, type Schedule } from "@/entities/schedule";
+import { isSameDay, isSameMonth } from "@/shared/lib/date";
+import { buildWeekSegments } from "@/widgets/calendar-month/model/buildWeekSegments";
+import CalendarDayCell from "@/widgets/calendar-month/ui/CalendarDayCell";
 
 interface CalendarWeekRowProps {
   weekDates: Date[];

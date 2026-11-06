@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import SelectButton from "../../../shared/SelectButton";
+import SelectButton from "@/shared/SelectButton";
 
 interface CalendarMonthNavigatorProps {
   /** 보고 있는 월이 오늘이 속한 월이면 '오늘' 버튼을 강조한다. */

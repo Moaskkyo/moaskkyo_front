@@ -1,1 +1,1 @@
-export { default as CalendarMonth } from "./ui/CalendarMonth";
+export { default as CalendarMonth } from "@/widgets/calendar-month/ui/CalendarMonth";

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { SCHEDULE_CATEGORIES, type ScheduleCategory } from "../../../entities/schedule";
+import { SCHEDULE_CATEGORIES, type ScheduleCategory } from "@/entities/schedule";
 
 export type VisibleCategories = Record<ScheduleCategory, boolean>;
 

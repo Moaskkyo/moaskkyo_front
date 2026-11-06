@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
-import { formatShortDate, parseDateKey } from "../../../shared/lib/date";
-import { colors } from "../../../shared/styles/colors";
-import { SCHEDULE_CATEGORY_CONFIG } from "../model/category";
-import { getScheduleTitle, isMultiDaySchedule } from "../model/lib";
-import type { Schedule } from "../model/types";
-import ScheduleCategoryBadge from "./ScheduleCategoryBadge";
+import { formatShortDate, parseDateKey } from "@/shared/lib/date";
+import { colors } from "@/shared/styles/colors";
+import { SCHEDULE_CATEGORY_CONFIG } from "@/entities/schedule/model/category";
+import {
+  getScheduleTitle,
+  isMultiDaySchedule,
+} from "@/entities/schedule/model/lib";
+import type { Schedule } from "@/entities/schedule/model/types";
+import ScheduleCategoryBadge from "@/entities/schedule/ui/ScheduleCategoryBadge";
 
 interface ScheduleCardProps {
   schedule: Schedule;

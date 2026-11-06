@@ -1,5 +1,5 @@
-import type { Schedule } from "../../../entities/schedule";
-import { DAYS_PER_WEEK, toDateKey } from "../../../shared/lib/date";
+import type { Schedule } from "@/entities/schedule";
+import { DAYS_PER_WEEK, toDateKey } from "@/shared/lib/date";
 
 /** 한 주(7일) 안에서 일정이 차지하는 구간. 열 인덱스는 0(일) ~ 6(토). */
 export interface WeekSegment {

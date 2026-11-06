@@ -1,10 +1,10 @@
 import { Route, BrowserRouter, Routes } from "react-router-dom";
-import HomePage from "./app/pages/home/HomePage";
-import InformationPage from "./app/pages/Information/InformationPage";
-import SettingPage from "./app/pages/Setting/SettingPage";
-import TimeTablePage from "./app/pages/Timetable/TimetablePage";
-import { CalendarPage } from "./app/pages/calendar";
-import Layout from "./app/Layout";
+import { HomePage } from "@/app/pages/home";
+import { InformationPage } from "@/app/pages/Information";
+import { SettingPage } from "@/app/pages/Setting";
+import { TimeTablePage } from "@/app/pages/Timetable";
+import { CalendarPage } from "@/app/pages/calendar";
+import Layout from "@/app/Layout";
 
 function App() {
   return (

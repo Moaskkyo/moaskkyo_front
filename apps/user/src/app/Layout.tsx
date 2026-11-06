@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Outlet } from "react-router-dom";
-import SideBar from "../widgets/SideBar";
+import SideBar from "@/widgets/SideBar";
 
 export default function Layout() {
   return (
