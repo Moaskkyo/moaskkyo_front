@@ -1,3 +1,9 @@
+import { Meal } from "@/features/meal";
+
 export default function InformationPage() {
-  return <div>InformationPage</div>;
+  return (
+    <div>
+      <Meal />
+    </div>
+  );
 }
