@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { SCHEDULE_CATEGORY_CONFIG } from "../model/category";
-import type { ScheduleCategory } from "../model/types";
+import { SCHEDULE_CATEGORY_CONFIG } from "@/entities/schedule/model/category";
+import type { ScheduleCategory } from "@/entities/schedule/model/types";
 
 interface ScheduleCategoryBadgeProps {
   category: ScheduleCategory;

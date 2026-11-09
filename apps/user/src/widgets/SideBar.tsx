@@ -1,23 +1,32 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const MENUS = ["홈", "캘린더", "시간표", "정보", "설정"];
+const LIST = [
+  { name: "홈", path: "/home" },
+  { name: "캘린더", path: "/calendar" },
+  { name: "시간표", path: "/timetable" },
+  { name: "정보", path: "/information" },
+  { name: "설정", path: "/setting" },
+];
 
 export default function SideBar() {
-  const [activeMenu, setActiveMenu] = useState(MENUS[0]);
+  const navigation = useNavigate();
+  const { pathname } = useLocation();
+
+  const activePath = pathname === "/" ? LIST[0].path : pathname;
 
   return (
     <Wrapper>
       <Top>
         <Title>모앗꾜</Title>
         <Menu>
-          {MENUS.map((menu) => (
+          {LIST.map((menu) => (
             <List
-              key={menu}
-              $active={menu === activeMenu}
-              onClick={() => setActiveMenu(menu)}
+              key={menu.name}
+              $active={menu.path === activePath}
+              onClick={() => navigation(menu.path)}
             >
-              {menu}
+              {menu.name}
             </List>
           ))}
         </Menu>

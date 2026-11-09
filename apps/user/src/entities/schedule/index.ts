@@ -4,21 +4,21 @@ export type {
   BirthdaySchedule,
   Schedule,
   ScheduleCategory,
-} from "./model/types";
-export type { ScheduleCategoryConfig } from "./model/category";
-export { SCHEDULE_CATEGORIES, SCHEDULE_CATEGORY_CONFIG } from "./model/category";
+} from "@/entities/schedule/model/types";
+export type { ScheduleCategoryConfig } from "@/entities/schedule/model/category";
+export { SCHEDULE_CATEGORIES, SCHEDULE_CATEGORY_CONFIG } from "@/entities/schedule/model/category";
 export {
   getScheduleChipLabel,
   getSchedulesOnDate,
   getScheduleTitle,
   includesDate,
   isMultiDaySchedule,
-} from "./model/lib";
+} from "@/entities/schedule/model/lib";
 export {
   mockAcademicSchedules,
   mockAssessmentSchedules,
   mockBirthdaySchedules,
-} from "./model/mockItems";
-export { default as ScheduleChip } from "./ui/ScheduleChip";
-export { default as ScheduleCategoryBadge } from "./ui/ScheduleCategoryBadge";
-export { default as ScheduleCard } from "./ui/ScheduleCard";
+} from "@/entities/schedule/model/mockItems";
+export { default as ScheduleChip } from "@/entities/schedule/ui/ScheduleChip";
+export { default as ScheduleCategoryBadge } from "@/entities/schedule/ui/ScheduleCategoryBadge";
+export { default as ScheduleCard } from "@/entities/schedule/ui/ScheduleCard";

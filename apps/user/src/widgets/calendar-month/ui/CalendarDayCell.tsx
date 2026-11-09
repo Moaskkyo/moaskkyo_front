@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { colors } from "../../../shared/styles/colors";
+import { colors } from "@/shared/styles/colors";
 
 interface CalendarDayCellProps {
   date: Date;

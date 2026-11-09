@@ -1,1 +1,1 @@
-export { default as ScheduleDayDetail } from "./ui/ScheduleDayDetail";
+export { default as ScheduleDayDetail } from "@/widgets/schedule-day-detail/ui/ScheduleDayDetail";
