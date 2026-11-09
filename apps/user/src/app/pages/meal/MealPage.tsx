@@ -6,7 +6,6 @@ import {
   SegmentControl,
   type Period,
 } from "../../../features/meal";
-import Layout from "../../Layout";
 
 export default function MealPage() {
   const [period, setPeriod] = useState<Period>("일");
@@ -16,10 +15,10 @@ export default function MealPage() {
   );
 
   return (
-    <Layout>
+    <>
       {period === "일" && <MealsToday headerRight={periodControl} />}
       {period === "주" && <MealsWeek headerRight={periodControl} />}
       {period === "월" && <MealsMonth headerRight={periodControl} />}
-    </Layout>
+    </>
   );
 }
