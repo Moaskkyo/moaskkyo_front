@@ -1,3 +1,4 @@
+export { default as Meal } from "./ui/Meal";
 export { default as MealsToday } from "./ui/daily/Meals";
 export { default as MealsWeek } from "./ui/week/Meals";
 export { default as MealsMonth } from "./ui/month/Meals";

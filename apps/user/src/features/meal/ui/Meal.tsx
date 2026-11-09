@@ -1,13 +1,11 @@
 import { useState } from "react";
-import {
-  MealsMonth,
-  MealsToday,
-  MealsWeek,
-  SegmentControl,
-  type Period,
-} from "../../../features/meal";
+import type { Period } from "../model/type";
+import MealsToday from "./daily/Meals";
+import MealsWeek from "./week/Meals";
+import MealsMonth from "./month/Meals";
+import SegmentControl from "./SegmentControl";
 
-export default function MealPage() {
+export default function Meal() {
   const [period, setPeriod] = useState<Period>("일");
 
   const periodControl = (
