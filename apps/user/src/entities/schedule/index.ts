@@ -4,13 +4,16 @@ export type {
   BirthdaySchedule,
   Schedule,
   ScheduleCategory,
+  ScheduleWithDetail,
 } from "@/entities/schedule/model/types";
 export type { ScheduleCategoryConfig } from "@/entities/schedule/model/category";
 export { SCHEDULE_CATEGORIES, SCHEDULE_CATEGORY_CONFIG } from "@/entities/schedule/model/category";
 export {
+  canEditDetail,
   getScheduleChipLabel,
   getSchedulesOnDate,
   getScheduleTitle,
+  hasDetailView,
   includesDate,
   isMultiDaySchedule,
 } from "@/entities/schedule/model/lib";

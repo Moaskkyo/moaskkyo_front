@@ -1,15 +1,26 @@
 import styled from "@emotion/styled";
 import { useMemo } from "react";
-import { getSchedulesOnDate, ScheduleCard, type Schedule } from "@/entities/schedule";
+import {
+  getSchedulesOnDate,
+  hasDetailView,
+  ScheduleCard,
+  type Schedule,
+} from "@/entities/schedule";
 import { formatDayTitle } from "@/shared/lib/date";
 import { colors } from "@/shared/styles/colors";
 
 interface ScheduleDayDetailProps {
   date: Date;
   schedules: Schedule[];
+  /** 특정 일정 클릭(상세 내용 조회). 상세가 있는 일정에만 연결된다. */
+  onSelectSchedule?: (schedule: Schedule) => void;
 }
 
-export default function ScheduleDayDetail({ date, schedules }: ScheduleDayDetailProps) {
+export default function ScheduleDayDetail({
+  date,
+  schedules,
+  onSelectSchedule,
+}: ScheduleDayDetailProps) {
   const daySchedules = useMemo(() => getSchedulesOnDate(schedules, date), [schedules, date]);
 
   return (
@@ -22,7 +33,10 @@ export default function ScheduleDayDetail({ date, schedules }: ScheduleDayDetail
         <List>
           {daySchedules.map((schedule) => (
             <li key={schedule.id}>
-              <ScheduleCard schedule={schedule} />
+              <ScheduleCard
+                schedule={schedule}
+                onClick={hasDetailView(schedule) ? onSelectSchedule : undefined}
+              />
             </li>
           ))}
         </List>
