@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import SideBar from "../widgets/SideBar";
 import { colors } from "../shared/styles/colors";
 
 export default function Layout() {
+  const { pathname } = useLocation();
   return (
-    <Wrapper>
+    <Wrapper data-teachers-page={pathname === "/teachers" || undefined}>
       <SkipLink href="#main-content">본문 바로가기</SkipLink>
       <SideBar />
       <Content>
@@ -16,7 +17,13 @@ export default function Layout() {
   );
 }
 
-const Wrapper = styled.div`display: flex; height: 100dvh; overflow: hidden;`;
+const Wrapper = styled.div`
+  display: flex; height: 100dvh; overflow: hidden;
+  &[data-teachers-page] {
+    > div > header { min-height: 76px; padding: 0 32px; }
+    main { padding: 32px 40px 50px; }
+  }
+`;
 const Content = styled.div`flex: 1; min-width: 0; display: flex; flex-direction: column;`;
 const Header = styled.header`
   flex-shrink: 0;
