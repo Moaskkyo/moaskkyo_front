@@ -6,7 +6,7 @@ import { colors } from "../shared/styles/colors";
 export default function Layout() {
   const { pathname } = useLocation();
   return (
-    <Wrapper data-teachers-page={pathname === "/teachers" || undefined}>
+    <Wrapper data-calendar-page={pathname === "/calendar" || undefined} data-teachers-page={pathname === "/teachers" || undefined}>
       <SkipLink href="#main-content">본문 바로가기</SkipLink>
       <SideBar />
       <Content>
@@ -19,6 +19,10 @@ export default function Layout() {
 
 const Wrapper = styled.div`
   display: flex; height: 100dvh; overflow: hidden;
+  &[data-calendar-page] {
+    > div > header { min-height: 76px; padding: 0 32px; }
+    main { padding: 32px 40px 50px; }
+  }
   &[data-teachers-page] {
     > div > header { min-height: 76px; padding: 0 32px; }
     main { padding: 32px 40px 50px; }
