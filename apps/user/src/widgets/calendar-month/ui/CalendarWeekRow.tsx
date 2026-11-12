@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useMemo } from "react";
-import { ScheduleChip, type Schedule } from "@/entities/schedule";
+import { hasDetailView, ScheduleChip, type Schedule } from "@/entities/schedule";
 import { isSameDay, isSameMonth } from "@/shared/lib/date";
 import { buildWeekSegments } from "@/widgets/calendar-month/model/buildWeekSegments";
 import CalendarDayCell from "@/widgets/calendar-month/ui/CalendarDayCell";
@@ -12,6 +12,7 @@ interface CalendarWeekRowProps {
   selectedDate: Date | null;
   schedules: Schedule[];
   onSelectDate: (date: Date) => void;
+  onSelectSchedule?: (schedule: Schedule) => void;
 }
 
 const DAY_NUMBER_ROW_HEIGHT = 36;
@@ -29,6 +30,7 @@ export default function CalendarWeekRow({
   selectedDate,
   schedules,
   onSelectDate,
+  onSelectSchedule,
 }: CalendarWeekRowProps) {
   const { segments, laneCount } = useMemo(
     () => buildWeekSegments(weekDates, schedules),
@@ -61,6 +63,7 @@ export default function CalendarWeekRow({
             schedule={segment.schedule}
             isStart={segment.isStart}
             isEnd={segment.isEnd}
+            onClick={hasDetailView(segment.schedule) ? onSelectSchedule : undefined}
           />
         </Segment>
       ))}

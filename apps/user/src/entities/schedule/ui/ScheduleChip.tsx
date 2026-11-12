@@ -12,23 +12,41 @@ interface ScheduleChipProps {
   isStart?: boolean;
   /** 이 칩이 일정의 종료일을 포함하면 오른쪽 모서리를 둥글게 처리한다. */
   isEnd?: boolean;
+  /** 주어지면 버튼으로 렌더해 "특정 일정 클릭"을 받는다. */
+  onClick?: (schedule: Schedule) => void;
 }
 
 export default function ScheduleChip({
   schedule,
   isStart = true,
   isEnd = true,
+  onClick,
 }: ScheduleChipProps) {
   const config = SCHEDULE_CATEGORY_CONFIG[schedule.category];
+  const title = getScheduleTitle(schedule);
+  const styleProps = {
+    $text: config.text,
+    $background: config.background,
+    $isStart: isStart,
+    $isEnd: isEnd,
+  };
+
+  if (onClick) {
+    return (
+      <ChipButton
+        type="button"
+        title={title}
+        aria-label={`${title} 상세 보기`}
+        onClick={() => onClick(schedule)}
+        {...styleProps}
+      >
+        {getScheduleChipLabel(schedule)}
+      </ChipButton>
+    );
+  }
 
   return (
-    <Wrapper
-      title={getScheduleTitle(schedule)}
-      $text={config.text}
-      $background={config.background}
-      $isStart={isStart}
-      $isEnd={isEnd}
-    >
+    <Wrapper title={title} {...styleProps}>
       {getScheduleChipLabel(schedule)}
     </Wrapper>
   );
@@ -52,4 +70,24 @@ const Wrapper = styled.div<{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const ChipButton = styled(Wrapper.withComponent("button"))`
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  pointer-events: auto;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 1px;
+  }
 `;

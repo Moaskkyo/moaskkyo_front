@@ -16,19 +16,31 @@ function dayOfNextMonth(day: number): string {
   return toDateKey(new Date(baseMonth.getFullYear(), baseMonth.getMonth() + 1, day));
 }
 
-function academic(id: string, title: string, startDay: number, endDay = startDay): AcademicSchedule {
+function academic(
+  id: string,
+  title: string,
+  startDay: number,
+  endDay = startDay,
+  detail: string | null = null,
+): AcademicSchedule {
   return {
     id,
     category: "ACADEMIC",
     title,
+    detail,
     startDate: dayOfCurrentMonth(startDay),
     endDate: dayOfCurrentMonth(endDay),
   };
 }
 
-function assessment(id: string, title: string, day: number): AssessmentSchedule {
+function assessment(
+  id: string,
+  title: string,
+  day: number,
+  detail: string | null = null,
+): AssessmentSchedule {
   const date = dayOfCurrentMonth(day);
-  return { id, category: "ASSESSMENT", title, startDate: date, endDate: date };
+  return { id, category: "ASSESSMENT", title, detail, startDate: date, endDate: date };
 }
 
 function birthday(id: string, name: string, studentNumber: string, day: number): BirthdaySchedule {
@@ -42,11 +54,12 @@ export const mockAcademicSchedules: AcademicSchedule[] = [
   academic("aca-03", "한글날", 9),
   academic("aca-04", "학부모 상담", 15),
   academic("aca-05", "중간고사 대비 학습 안내", 16),
-  academic("aca-06", "중간고사", 21, 23),
+  academic("aca-06", "중간고사", 21, 23, "1~4교시 시험이에요.\n시험 범위는 각 교과 공지를 확인해 주세요."),
   {
     id: "aca-07",
     category: "ACADEMIC",
     title: "수학여행",
+    detail: null,
     startDate: dayOfCurrentMonth(28),
     endDate: dayOfNextMonth(3),
   },
@@ -57,7 +70,12 @@ export const mockAssessmentSchedules: AssessmentSchedule[] = [
   assessment("ass-02", "영어 에세이", 13),
   assessment("ass-03", "확률 보고서", 19),
   assessment("ass-04", "국어 발표", 20),
-  assessment("ass-05", "정보 프로젝트", 28),
+  assessment(
+    "ass-05",
+    "정보 프로젝트",
+    28,
+    "간단한 웹 페이지를 직접 만들고 화면과 코드를 정리해,\n정보 수업 시간에 모둠별로 발표해요.",
+  ),
 ];
 
 export const mockBirthdaySchedules: BirthdaySchedule[] = [

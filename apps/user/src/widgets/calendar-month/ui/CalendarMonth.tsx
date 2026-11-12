@@ -12,6 +12,8 @@ interface CalendarMonthProps {
   selectedDate: Date | null;
   schedules: Schedule[];
   onSelectDate: (date: Date) => void;
+  /** 특정 일정 클릭(상세 내용 조회). 상세가 있는 일정에만 연결된다. */
+  onSelectSchedule?: (schedule: Schedule) => void;
 }
 
 const SUNDAY_INDEX = 0;
@@ -23,6 +25,7 @@ export default function CalendarMonth({
   selectedDate,
   schedules,
   onSelectDate,
+  onSelectSchedule,
 }: CalendarMonthProps) {
   const weeks = useMemo(() => getMonthWeeks(monthDate), [monthDate]);
 
@@ -49,6 +52,7 @@ export default function CalendarMonth({
             selectedDate={selectedDate}
             schedules={schedules}
             onSelectDate={onSelectDate}
+            onSelectSchedule={onSelectSchedule}
           />
         ))}
       </Grid>

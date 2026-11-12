@@ -16,4 +16,8 @@ export const colors = {
   background: "#F8FAFC",
   surface: "#FFFFFF",
   surfaceMuted: "#F8FAFC",
+  danger: "#DC2626",
+  dangerSoft: "#FEF2F2",
+  success: "#15803D",
+  overlay: "rgba(15, 23, 42, 0.45)",
 } as const;

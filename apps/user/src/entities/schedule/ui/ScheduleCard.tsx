@@ -11,23 +11,40 @@ import ScheduleCategoryBadge from "@/entities/schedule/ui/ScheduleCategoryBadge"
 
 interface ScheduleCardProps {
   schedule: Schedule;
+  /** 주어지면 버튼으로 렌더해 "특정 일정 클릭"을 받는다. */
+  onClick?: (schedule: Schedule) => void;
 }
 
-export default function ScheduleCard({ schedule }: ScheduleCardProps) {
+export default function ScheduleCard({ schedule, onClick }: ScheduleCardProps) {
   const accent = SCHEDULE_CATEGORY_CONFIG[schedule.category].accent;
   const period = isMultiDaySchedule(schedule)
     ? `${formatShortDate(parseDateKey(schedule.startDate))} ~ ${formatShortDate(parseDateKey(schedule.endDate))}`
     : null;
 
-  return (
-    <Wrapper $accent={accent}>
+  const content = (
+    <>
       <ScheduleCategoryBadge category={schedule.category} />
       <TitleRow>
         <Title>{getScheduleTitle(schedule)}</Title>
         {period && <Period>{period}</Period>}
       </TitleRow>
-    </Wrapper>
+    </>
   );
+
+  if (onClick) {
+    return (
+      <CardButton
+        type="button"
+        aria-label={`${getScheduleTitle(schedule)} 상세 보기`}
+        $accent={accent}
+        onClick={() => onClick(schedule)}
+      >
+        {content}
+      </CardButton>
+    );
+  }
+
+  return <Wrapper $accent={accent}>{content}</Wrapper>;
 }
 
 const Wrapper = styled.article<{ $accent: string }>`
@@ -35,11 +52,28 @@ const Wrapper = styled.article<{ $accent: string }>`
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
+  width: 100%;
   padding: 14px 16px;
   background-color: ${colors.surface};
   border: 1px solid ${colors.border};
   border-left: 3px solid ${({ $accent }) => $accent};
   border-radius: 10px;
+`;
+
+const CardButton = styled(Wrapper.withComponent("button"))`
+  margin: 0;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${colors.surfaceMuted};
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary};
+    outline-offset: 2px;
+  }
 `;
 
 const TitleRow = styled.div`
