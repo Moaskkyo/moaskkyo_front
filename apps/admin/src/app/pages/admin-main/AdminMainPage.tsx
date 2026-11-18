@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import PageHeading from "../../../shared/PageHeading";
 import Card from "../../../shared/Card";
 import ActionLink from "../../../shared/ActionLink";
 import SummaryCard from "../../../shared/SummaryCard";
@@ -21,7 +22,7 @@ const schedules = [
 export default function AdminMainPage() {
   return (
     <Dashboard>
-      <Introduction><h1>학교 운영을 한눈에</h1><p>오늘의 학교 일정과 주요 관리 현황을 확인하세요.</p></Introduction>
+      <PageHeading title="학교 운영을 한눈에" description="오늘의 학교 일정과 주요 관리 현황을 확인하세요." />
       <Summaries>{summaries.map((summary) => <SummaryCard key={summary.title} {...summary} />)}</Summaries>
       <Middle>
         <Panel aria-labelledby="schedule-title">
@@ -29,11 +30,9 @@ export default function AdminMainPage() {
           <Table><colgroup><col style={{ width: "20%" }} /><col /><col style={{ width: "24%" }} /></colgroup><thead><tr><th scope="col">일자</th><th scope="col">일정</th><th scope="col">유형</th></tr></thead><tbody>{schedules.map((schedule) => <tr key={schedule.title}><MutedCell>{schedule.date}</MutedCell><td>{schedule.title}</td><CategoryCell>{schedule.category}</CategoryCell></tr>)}</tbody></Table>
         </Panel>
         <Departure aria-labelledby="departure-title">
-          <DepartureLabel>학교·귀가 시간</DepartureLabel>
-          <h2 id="departure-title">이번 주 귀가 시간</h2>
-          <DepartureDate>10월 30일 금요일</DepartureDate>
-          <DepartureTime dateTime="16:30">16:30</DepartureTime>
-          <DepartureButton to="/school-hours">귀가 시간 설정</DepartureButton>
+          <h2 id="departure-title">하교 시간 관리</h2>
+          <DepartureDescription>하교 날짜와 시간을 설정하세요.</DepartureDescription>
+          <DepartureButton to="/school-hours">하교 시간 설정</DepartureButton>
         </Departure>
       </Middle>
       <Panel aria-labelledby="supervisor-title">
@@ -45,10 +44,6 @@ export default function AdminMainPage() {
 }
 
 const Dashboard = styled.div`display: grid; gap: 20px; @media (max-height: 760px) { gap: 16px; }`;
-const Introduction = styled.div`
-  h1 { font-size: 24px; line-height: 1.4; font-weight: 800; }
-  p { margin-top: 6px; font-size: 16px; line-height: 1.5; color: ${colors.textMuted}; }
-`;
 const Summaries = styled.div`
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
   @media (max-width: 850px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -82,9 +77,7 @@ const Departure = styled.section`
   @media (max-height: 760px) { padding: 18px 20px; }
   @media (max-width: 700px) { min-height: 230px; }
 `;
-const DepartureLabel = styled.p`font-size: 14px; color: ${colors.primary};`;
-const DepartureDate = styled.p`font-size: 16px; font-weight: 700; margin-top: 18px;`;
-const DepartureTime = styled.time`font-size: 40px; line-height: 1.3; font-weight: 750; color: ${colors.primary}; margin: 8px 0 24px; @media (max-height: 760px) { font-size: 34px; margin: 8px 0 16px; }`;
+const DepartureDescription = styled.p`font-size: 14px; color: ${colors.textMuted}; margin: 8px 0 24px;`;
 const DepartureButton = styled(ActionLink)`margin-top: auto; width: 100%; text-align: left; padding: 6px 10px;`;
 
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
+import PageHeading from "../../../shared/PageHeading";
 import { initialSchedules, type AcademicSchedule } from "../../../entities/schedule";
 import { ScheduleFormModal } from "../../../features/edit-schedule";
 import { CalendarMonth } from "../../../widgets/calendar-month";
@@ -19,7 +20,7 @@ export default function CalendarPage() {
     setSelection(null);
   }
   return <div>
-    <Introduction><h1>학사일정 관리</h1><p>캘린더에서 학교 일정을 확인하고 날짜를 클릭해 추가하세요.</p></Introduction>
+    <Introduction title="학사일정 관리" description="캘린더에서 학교 일정을 확인하고 날짜를 클릭해 추가하세요." />
     <Panel aria-label="학사일정 달력">
       <Toolbar>
         <h2 aria-live="polite">{month.getFullYear()}년 {month.getMonth() + 1}월</h2>
@@ -33,10 +34,8 @@ export default function CalendarPage() {
     {selection && <ScheduleFormModal date={selection.date} schedule={selection.schedule} onClose={() => setSelection(null)} onSave={save} />}
   </div>;
 }
-const Introduction = styled.div`
+const Introduction = styled(PageHeading)`
   margin-bottom: 30px;
-  h1 { font-size: 30px; line-height: 40px; font-weight: 700; }
-  p { margin-top: 6px; color: #7F8DA7; font-size: 14px; line-height: 24px; }
 `;
 const Panel = styled.section`width: 100%; padding: 23px 27px 52px; border: 1px solid ${colors.border}; border-radius: 12px; background: white;`;
 const Toolbar = styled.div`

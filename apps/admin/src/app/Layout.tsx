@@ -1,17 +1,19 @@
 import styled from "@emotion/styled";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import SideBar from "../widgets/SideBar";
+import SchoolHeader from "../widgets/SchoolHeader";
 import { colors } from "../shared/styles/colors";
 
 export default function Layout() {
-  const { pathname } = useLocation();
   return (
-    <Wrapper data-calendar-page={pathname === "/calendar" || undefined} data-teachers-page={pathname === "/teachers" || undefined}>
+    <Wrapper>
       <SkipLink href="#main-content">본문 바로가기</SkipLink>
       <SideBar />
       <Content>
-        <Header>대덕소프트웨어마이스터고등학교</Header>
-        <Main id="main-content" tabIndex={-1}><Outlet /></Main>
+        <SchoolHeader>대덕소프트웨어마이스터고등학교</SchoolHeader>
+        <Main id="main-content" tabIndex={-1}>
+          <Outlet />
+        </Main>
       </Content>
     </Wrapper>
   );
@@ -19,27 +21,8 @@ export default function Layout() {
 
 const Wrapper = styled.div`
   display: flex; height: 100dvh; overflow: hidden;
-  &[data-calendar-page] {
-    > div > header { min-height: 76px; padding: 0 32px; }
-    main { padding: 32px 40px 50px; }
-  }
-  &[data-teachers-page] {
-    > div > header { min-height: 76px; padding: 0 32px; }
-    main { padding: 32px 40px 50px; }
-  }
 `;
 const Content = styled.div`flex: 1; min-width: 0; display: flex; flex-direction: column;`;
-const Header = styled.header`
-  flex-shrink: 0;
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  padding: 0 28px;
-  background: ${colors.surface};
-  font-size: 16px;
-  font-weight: 700;
-  @media (max-height: 760px) { min-height: 49px; }
-`;
 const Main = styled.main`
   flex: 1;
   min-height: 0;
