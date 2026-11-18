@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
+import PageHeading from "../../../shared/PageHeading";
 import { mockTeachers, type Teacher } from "../../../entities/teacher";
 import { TeacherFormModal } from "../../../features/edit-teacher";
 import { TeacherSearch } from "../../../features/search-teacher";
@@ -30,7 +31,7 @@ export default function TeachersPage() {
   }
 
   return <Page>
-    <Introduction><h1>선생님 위치 관리</h1><p>선생님의 교무실 위치를 확인하고 관리하세요.</p></Introduction>
+    <PageHeading title="선생님 위치 관리" description="선생님의 교무실 위치를 확인하고 관리하세요." />
     <Panel aria-labelledby="teachers-title">
       <PanelHeader><h2 id="teachers-title">선생님 목록</h2><p>이름으로 검색하거나 층별로 교무실 위치를 확인할 수 있어요.</p></PanelHeader>
       <Toolbar>
@@ -61,10 +62,6 @@ export default function TeachersPage() {
 }
 
 const Page = styled.div`font-size: 14px; line-height: 1.5;`;
-const Introduction = styled.div`
-  h1 { font-size: 30px; line-height: 42px; font-weight: 700; }
-  p { margin-top: 4px; color: #7F8DA7; font-size: 14px; line-height: 22px; }
-`;
 const Panel = styled(Card)`margin-top: 28px; padding: 24px 27px 16px; border-radius: 12px;`;
 const PanelHeader = styled.div`
   h2 { font-size: 20px; line-height: 30px; }
