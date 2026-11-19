@@ -6,6 +6,13 @@ import App from "./App.tsx";
 
 const queryClient = new QueryClient();
 
+if (!localStorage.getItem("atptCode")) {
+  localStorage.setItem("atptCode", "G10");
+}
+if (!localStorage.getItem("schoolCode")) {
+  localStorage.setItem("schoolCode", "7430310");
+}
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
