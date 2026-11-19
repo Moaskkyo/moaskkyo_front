@@ -4,6 +4,8 @@ import { InformationPage } from "@/app/pages/Information";
 import { SettingPage } from "@/app/pages/Setting";
 import { TimeTablePage } from "@/app/pages/Timetable";
 import { CalendarPage } from "@/app/pages/calendar";
+import { LoginPage } from "@/app/pages/login";
+import { SignupPage } from "@/app/pages/signup";
 import Layout from "@/app/Layout";
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route path="/information" element={<InformationPage />} />
           <Route path="/setting" element={<SettingPage />} />
         </Route>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
       </Routes>
     </BrowserRouter>
   );
