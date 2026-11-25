@@ -189,6 +189,10 @@ const ChangeCodeButton = styled.button`
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
+
+  &:hover {
+    color: ${colors.primaryStrong};
+  }
 `;
 
 const Row = styled.div<{ $columns: number }>`
@@ -262,6 +266,10 @@ const TermsViewButton = styled.button`
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
+
+  &:hover {
+    color: ${colors.primaryStrong};
+  }
 `;
 
 const Submit = styled(SubmitButton)`

@@ -102,6 +102,10 @@ const ToggleButton = styled.button`
   font-family: inherit;
   cursor: pointer;
   transform: translateY(-50%);
+
+  &:hover {
+    color: ${colors.primaryStrong};
+  }
 `;
 
 const ErrorMessage = styled.div`
