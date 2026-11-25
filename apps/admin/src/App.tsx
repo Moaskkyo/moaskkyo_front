@@ -7,6 +7,8 @@ import { TeachersPage } from "./app/pages/teachers";
 import { SchoolHoursPage } from "./app/pages/school-hours";
 import { MyPage } from "./app/pages/my-page";
 import { AssessmentsPage } from "./app/pages/assessments";
+import { ExamTimetablePage } from "./app/pages/exam-timetable";
+import { StudySupervisionPage } from "./app/pages/study-supervision";
 import { managementMenus } from "./shared/model/navigation";
 
 function App() {
@@ -21,7 +23,9 @@ function App() {
           <Route path="/school-hours" element={<SchoolHoursPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/assessments" element={<AssessmentsPage />} />
-          {managementMenus.filter((menu) => !["/teachers", "/calendar", "/school-hours", "/mypage", "/assessments"].includes(menu.path)).map((menu) => <Route key={menu.path} path={menu.path} element={<ManagementPage title={menu.name} />} />)}
+          <Route path="/exam-timetable" element={<ExamTimetablePage />} />
+          <Route path="/study-supervision" element={<StudySupervisionPage />} />
+          {managementMenus.filter((menu) => !["/teachers", "/calendar", "/school-hours", "/mypage", "/assessments", "/exam-timetable", "/study-supervision"].includes(menu.path)).map((menu) => <Route key={menu.path} path={menu.path} element={<ManagementPage title={menu.name} />} />)}
         </Route>
       </Routes>
     </BrowserRouter>
