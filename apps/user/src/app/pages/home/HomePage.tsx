@@ -1,4 +1,4 @@
-import { DdayBlockLayout } from "@/features/d-day-count";
+import { DdayBlockLayout, HomeCountdown } from "@/features/d-day-count";
 
 export default function HomePage() {
   return (
@@ -17,13 +17,7 @@ export default function HomePage() {
         text="방학 시작일 2026. 12. 24.(목)"
         DayCountDown={64}
       />
-      <DdayBlockLayout
-        title="하교"
-        width={652}
-        height={264}
-        text="오늘 하교 시간 16:30"
-        time="01:57:36"
-      />
+      <HomeCountdown />
     </div>
   );
 }

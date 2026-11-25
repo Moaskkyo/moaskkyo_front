@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
+import type { ReactNode } from "react";
 
 interface DdayBlockLayoutProps {
   title: string;
   width: number;
   height: number;
   DayCountDown?: number;
-  time?: string;
+  time?: ReactNode;
   text: string;
+  background?: string;
 }
 
 export default function DdayBlockLayout({
@@ -16,9 +18,15 @@ export default function DdayBlockLayout({
   DayCountDown,
   text,
   time,
+  background,
 }: DdayBlockLayoutProps) {
   return (
-    <Wrapper $width={width} $height={height} $dayCountDown={DayCountDown}>
+    <Wrapper
+      $width={width}
+      $height={height}
+      $dayCountDown={DayCountDown}
+      $background={background}
+    >
       <Title>{title}까지</Title>
       {DayCountDown ? (
         <Time>D-{DayCountDown}</Time>
@@ -39,6 +47,7 @@ const Wrapper = styled.div<{
   $width: number;
   $height: number;
   $dayCountDown?: number;
+  $background?: string;
 }>`
   padding: 20px;
   display: flex;
@@ -47,6 +56,7 @@ const Wrapper = styled.div<{
   flex-direction: column;
   border-radius: 16px;
   border: 1px solid #e2e8f0;
+  background: ${({ $background }) => $background ?? "transparent"};
   gap: ${({ $dayCountDown }) => ($dayCountDown ? "8px" : "16px")};
   justify-content: space-between;
 `;
