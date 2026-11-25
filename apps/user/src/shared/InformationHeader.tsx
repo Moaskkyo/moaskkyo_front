@@ -1,17 +1,24 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
 
-const MenuItems = ["급식", "자습 감독", "선생님 위치"];
+const MenuItems = ["급식", "자습 감독", "선생님 위치"] as const;
 
-export default function Information() {
-  const [active, setActive] = useState("급식");
+export type InformationMenu = (typeof MenuItems)[number];
 
+interface InformationHeaderProps {
+  active: InformationMenu;
+  onChange: (menu: InformationMenu) => void;
+}
+
+export default function Information({
+  active,
+  onChange,
+}: InformationHeaderProps) {
   return (
     <Wrapper>
       {MenuItems.map((item) => (
         <Menu
           key={item}
-          onClick={() => setActive(item)}
+          onClick={() => onChange(item)}
           $active={active === item}
         >
           {item}
