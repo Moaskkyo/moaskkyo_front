@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { MouseEvent } from "react";
 import Card from "../../../shared/Card";
 import PageHeading from "../../../shared/PageHeading";
 import { FormButton } from "../../../shared/FormControls";
@@ -29,6 +30,13 @@ export default function MyPage() {
   const copyMenu = useRef<HTMLDivElement>(null);
   const codeTrigger = useRef<HTMLButtonElement>(null);
 
+  useEffect(() => {
+    if (!copyStatus) return;
+
+    const timeout = window.setTimeout(() => setCopyStatus(""), 3000);
+    return () => window.clearTimeout(timeout);
+  }, [copyStatus]);
+
   function saveSubject() {
     if (!subject) {
       setSubjectStatus("담당 과목을 선택해 주세요.");
@@ -44,12 +52,24 @@ export default function MyPage() {
     }
   }
 
+  function positionCopyMenu(event: MouseEvent<HTMLButtonElement>) {
+    setCopyStatus("");
+
+    const trigger = event.currentTarget.getBoundingClientRect();
+    const activatedWithPointer = event.detail > 0;
+    const x = activatedWithPointer ? event.clientX : trigger.left + trigger.width / 2;
+    const y = activatedWithPointer ? event.clientY : trigger.bottom;
+
+    copyMenu.current?.style.setProperty("--copy-menu-x", `${x}px`);
+    copyMenu.current?.style.setProperty("--copy-menu-y", `${y}px`);
+  }
+
   async function copySchoolCode() {
     copyMenu.current?.hidePopover();
     codeTrigger.current?.focus();
     try {
       await navigator.clipboard.writeText(schoolCode);
-      setCopyStatus("학교 코드를 복사했습니다.");
+      setCopyStatus("복사 되었습니다");
     } catch {
       setCopyStatus("학교 코드를 복사하지 못했습니다.");
     }
@@ -110,22 +130,22 @@ export default function MyPage() {
       <Panel aria-labelledby="school-code-title">
         <h2 id="school-code-title">학교 코드</h2>
         <Description>소속 학교의 코드를 확인하세요.</Description>
-        <CodeControl>
+        <div>
           <CodeButton ref={codeTrigger} type="button" popoverTarget="my-page-copy"
-            aria-label={`학교 코드 ${schoolCode}, 복사 메뉴`} onClick={() => setCopyStatus("")}>
+            aria-label={`학교 코드 ${schoolCode}, 복사 메뉴`} onClick={positionCopyMenu}>
             <strong>{schoolCode}</strong>
           </CodeButton>
           <CopyMenu ref={copyMenu} id="my-page-copy" popover="auto">
             <PopoverButton type="button" onClick={copySchoolCode}>복사하기</PopoverButton>
           </CopyMenu>
-        </CodeControl>
-        <CopyStatus role="status">{copyStatus}</CopyStatus>
+        </div>
       </Panel>
 
       <Footer>
         <LogoutButton type="button" aria-disabled="true">로그아웃</LogoutButton>
       </Footer>
 
+      <CopyStatus role="status">{copyStatus}</CopyStatus>
       {passwordDialogOpen && <PasswordDialog onClose={() => setPasswordDialogOpen(false)} />}
     </Page>
   );
@@ -263,8 +283,6 @@ const PopoverButton = styled.button`
   &:focus-visible { outline-offset: -3px; }
 `;
 
-const CodeControl = styled.div`anchor-name: --my-page-code;`;
-
 const CodeButton = styled(ReadOnlyValue.withComponent("button"))`
   width: 100%;
   text-align: left;
@@ -272,19 +290,33 @@ const CodeButton = styled(ReadOnlyValue.withComponent("button"))`
 `;
 
 const CopyMenu = styled(Popover)`
-  position-anchor: --my-page-code;
-  top: calc(anchor(bottom) - 16px);
-  left: calc(anchor(left) + min(96px, 15vw));
-  width: 166px;
+  --copy-menu-width: min(166px, calc(100% - 16px));
+  position: fixed;
+  top: clamp(8px, calc(var(--copy-menu-y) + 8px), calc(100dvh - 64px));
+  left: clamp(8px, calc(var(--copy-menu-x) - var(--copy-menu-width) / 2), calc(100% - var(--copy-menu-width) - 8px));
+  width: var(--copy-menu-width);
   background: ${colors.background};
 `;
 
 const CopyStatus = styled.p`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
+  position: fixed;
+  left: 50%;
+  bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+  z-index: 5;
+  transform: translateX(-50%);
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  padding: 5.51px 13.23px;
+  border-radius: 999px;
+  background: rgb(173 204 255 / 42%);
+  box-shadow: inset 0 0 0 1px rgb(53 99 243 / 30%);
+  color: #163772;
+  font-size: 14.33px;
+  line-height: 1.5;
+  text-align: center;
+  pointer-events: none;
+
+  &:empty { padding: 0; }
 `;
 
 const ActionButton = styled(FormButton)`
