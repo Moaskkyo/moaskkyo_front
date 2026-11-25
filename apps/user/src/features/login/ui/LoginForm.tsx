@@ -80,6 +80,10 @@ const SubmitButton = styled.button`
   font-family: inherit;
   cursor: pointer;
 
+  &:hover:not(:disabled) {
+    background-color: ${colors.primaryStrong};
+  }
+
   &:disabled {
     background-color: #f1f5f9;
     color: #475569;
