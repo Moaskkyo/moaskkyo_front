@@ -17,11 +17,17 @@ export interface SchoolScheduleRow {
   THREE_GRADE_EVENT_YN: string;
 }
 
+export interface NeisResult {
+  CODE: string;
+  MESSAGE: string;
+}
+
 export interface SchoolScheduleResponse {
   SchoolSchedule?: {
     head?: unknown[];
     row?: SchoolScheduleRow[];
   }[];
+  RESULT?: NeisResult;
 }
 
 export type ScheduleKind = "EXAM" | "VACATION";
