@@ -12,6 +12,9 @@ if (!localStorage.getItem("atptCode")) {
 if (!localStorage.getItem("schoolCode")) {
   localStorage.setItem("schoolCode", "7430310");
 }
+if (!localStorage.getItem("grade")) {
+  localStorage.setItem("grade", "2");
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

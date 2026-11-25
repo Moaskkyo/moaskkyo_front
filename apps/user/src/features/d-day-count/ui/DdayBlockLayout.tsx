@@ -28,8 +28,8 @@ export default function DdayBlockLayout({
       $background={background}
     >
       <Title>{title}까지</Title>
-      {DayCountDown ? (
-        <Time>D-{DayCountDown}</Time>
+      {DayCountDown !== undefined ? (
+        <Time>{DayCountDown > 0 ? `D-${DayCountDown}` : "D-DAY"}</Time>
       ) : (
         <VacationTime>{time}</VacationTime>
       )}
@@ -57,7 +57,7 @@ const Wrapper = styled.div<{
   border-radius: 16px;
   border: 1px solid #e2e8f0;
   background: ${({ $background }) => $background ?? "transparent"};
-  gap: ${({ $dayCountDown }) => ($dayCountDown ? "8px" : "16px")};
+  gap: ${({ $dayCountDown }) => ($dayCountDown !== undefined ? "8px" : "16px")};
   justify-content: space-between;
 `;
 

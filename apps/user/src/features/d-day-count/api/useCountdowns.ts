@@ -35,8 +35,9 @@ export const useCountdowns = () => {
 
   // 밤 12시(KST)가 지나면 새 하교 시간을 받아옴. 받아올 때마다 다음 자정으로 다시 예약
   // serverNow가 초 단위라 offset이 최대 1초 어긋날 수 있어, 자정 직전으로 계산돼 연달아 요청하지 않도록 5초 여유를 둠
+  // 응답에 serverNow가 없으면 offset이 NaN → setTimeout이 바로 실행돼 요청이 무한 반복되므로 막음
   useEffect(() => {
-    if (!dataUpdatedAt) return;
+    if (!dataUpdatedAt || !Number.isFinite(offset)) return;
     const delay = getMsUntilKstMidnight(offset) + MIDNIGHT_BUFFER_MS;
     const timer = setTimeout(() => refetch(), delay);
     return () => clearTimeout(timer);
