@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "@/shared/Input";
 import { formatPhoneNumber } from "@/shared/lib/phone";
 import Title from "@/shared/Title";
@@ -15,9 +15,11 @@ export default function LoginForm({ isLoading = false, errorMessage }: LoginForm
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const isInvalid = Boolean(errorMessage);
+  const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    navigate("/home");
   };
 
   return (

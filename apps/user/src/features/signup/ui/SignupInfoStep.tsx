@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useId, useState, type ChangeEvent, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "@/shared/Input";
 import { formatPhoneNumber } from "@/shared/lib/phone";
 import { colors } from "@/shared/styles/colors";
@@ -42,6 +42,7 @@ export default function SignupInfoStep({
   const [values, setValues] = useState<SignupInfoValues>(INITIAL_VALUES);
   const [agreed, setAgreed] = useState(false);
   const birthLabelId = useId();
+  const navigate = useNavigate();
 
   const handleChange =
     (key: keyof SignupInfoValues, format?: (value: string) => string) =>
@@ -52,6 +53,7 @@ export default function SignupInfoStep({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    navigate("/login");
   };
 
   return (
