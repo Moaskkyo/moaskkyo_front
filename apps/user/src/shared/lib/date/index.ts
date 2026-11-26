@@ -113,3 +113,5 @@ export function formatDayTitle(date: Date): string {
 export function formatShortDate(date: Date): string {
   return `${date.getMonth() + 1}/${date.getDate()}`;
 }
+
+export { useToday } from "./useToday";

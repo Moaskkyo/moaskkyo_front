@@ -4,11 +4,20 @@ import { colors } from "@/shared/styles/colors";
 
 interface DdaySectionProps {
   isAdded: boolean;
+  /** 방금 추가했을 때만 완료 문구를 보여준다. */
+  showSuccessMessage: boolean;
+  /** 지난 일정을 추가하려고 했을 때 안내 문구를 보여준다. */
+  showPastMessage: boolean;
   onAdd: () => void;
 }
 
-/** D-day 영역. 퍼블리싱만 된 상태로, 연결된 기능은 아직 없다. */
-export default function DdaySection({ isAdded, onAdd }: DdaySectionProps) {
+/** D-day 영역. 추가하면 홈의 내 D-day에 보인다. */
+export default function DdaySection({
+  isAdded,
+  showSuccessMessage,
+  showPastMessage,
+  onAdd,
+}: DdaySectionProps) {
   return (
     <Wrapper>
       <Label>D-day</Label>
@@ -21,12 +30,17 @@ export default function DdaySection({ isAdded, onAdd }: DdaySectionProps) {
             </AddedButton>
             <AddedHint>홈의 내 D-day에서 삭제할 수 있어요.</AddedHint>
           </AddedRow>
-          <SuccessMessage role="status">D-day에 추가했어요. 홈에서 볼 수 있어요.</SuccessMessage>
+          {showSuccessMessage && (
+            <SuccessMessage role="status">D-day에 추가했어요. 홈에서 볼 수 있어요.</SuccessMessage>
+          )}
         </>
       ) : (
-        <ButtonRow>
-          <Button text="D-day 추가" onClick={onAdd} />
-        </ButtonRow>
+        <>
+          <ButtonRow>
+            <Button text="D-day 추가" onClick={onAdd} />
+          </ButtonRow>
+          {showPastMessage && <ErrorMessage role="alert">지난 D-day는 추가할 수 없어요.</ErrorMessage>}
+        </>
       )}
     </Wrapper>
   );
@@ -83,6 +97,13 @@ const AddedHint = styled.span`
 const SuccessMessage = styled.p`
   margin: 6px 0 0;
   color: ${colors.success};
+  font-size: 13px;
+  font-weight: 600;
+`;
+
+const ErrorMessage = styled.p`
+  margin: 6px 0 0;
+  color: ${colors.danger};
   font-size: 13px;
   font-weight: 600;
 `;

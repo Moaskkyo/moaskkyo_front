@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { useSchoolSchedule } from "../api/useSchoolSchedule";
 import { getGrade } from "../model/grade";
-import { useToday } from "../model/useToday";
+import { useToday } from "@/shared/lib/date";
 import type { ScheduleKind } from "../model/types";
 import {
   findNextEvent,

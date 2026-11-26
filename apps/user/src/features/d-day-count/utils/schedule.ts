@@ -104,13 +104,3 @@ export const formatMonthDay = (date: Date) =>
 
 export const formatFullDate = (date: Date) =>
   `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}.(${WEEKDAY_LABELS[date.getDay()]})`;
-
-export const getMsUntilMidnight = () => {
-  const now = new Date();
-  const nextMidnight = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate() + 1,
-  );
-  return nextMidnight.getTime() - now.getTime();
-};
