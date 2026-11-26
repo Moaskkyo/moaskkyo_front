@@ -2,8 +2,10 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { canEditDetail, type ScheduleWithDetail } from "@/entities/schedule";
 import { ScheduleDetailForm } from "@/features/edit-schedule-detail";
+import { useMyDdays } from "@/features/my-dday";
 import Button from "@/shared/Button";
 import Modal from "@/shared/Modal";
+import { toDateKey } from "@/shared/lib/date";
 import { colors } from "@/shared/styles/colors";
 import DdaySection from "@/widgets/schedule-detail-modal/ui/DdaySection";
 
@@ -25,8 +27,25 @@ export default function ScheduleDetailModal({
   onDeleteDetail,
 }: ScheduleDetailModalProps) {
   const [isEditing, setIsEditing] = useState(false);
-  // D-day는 퍼블리싱만 된 상태라 화면 확인용 로컬 상태만 둔다.
-  const [isDdayAdded, setIsDdayAdded] = useState(false);
+  const { hasDday, addDday } = useMyDdays();
+  // 방금 추가했을 때만 완료 문구를 보여준다.
+  const [isDdayJustAdded, setIsDdayJustAdded] = useState(false);
+
+  // 지난 일정을 추가하려고 할 때만 안내 문구를 보여준다.
+  const [isPastDdayBlocked, setIsPastDdayBlocked] = useState(false);
+
+  const handleAddDday = () => {
+    if (schedule.startDate < toDateKey(new Date())) {
+      setIsPastDdayBlocked(true);
+      return;
+    }
+    addDday({
+      scheduleId: schedule.id,
+      title: schedule.title,
+      date: schedule.startDate,
+    });
+    setIsDdayJustAdded(true);
+  };
 
   const isEditable = canEditDetail(schedule);
   const hasDetail = schedule.detail !== null && schedule.detail.length > 0;
@@ -76,7 +95,12 @@ export default function ScheduleDetailModal({
           {isEditable && (
             <>
               <Divider />
-              <DdaySection isAdded={isDdayAdded} onAdd={() => setIsDdayAdded(true)} />
+              <DdaySection
+                isAdded={hasDday(schedule.id)}
+                showSuccessMessage={isDdayJustAdded}
+                showPastMessage={isPastDdayBlocked}
+                onAdd={handleAddDday}
+              />
             </>
           )}
         </>
